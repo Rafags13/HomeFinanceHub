@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Codes\\Testes T\u00E9cnicos\\MaxiProd\\HomeFinanceHub\\Backend\\HomeFinanceHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CECD5F7A-1142-46F4-8E58-4BD9B7B2B823}|HomeFinanceHub.WebApi\\HomeFinanceHub.WebApi.csproj|c:\\codes\\testes t\u00E9cnicos\\maxiprod\\homefinancehub\\backend\\homefinancehub\\homefinancehub.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CECD5F7A-1142-46F4-8E58-4BD9B7B2B823}|HomeFinanceHub.WebApi\\HomeFinanceHub.WebApi.csproj|solutionrelative:homefinancehub.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Codes\\Testes T\u00E9cnicos\\MaxiProd\\HomeFinanceHub\\Backend\\HomeFinanceHub\\HomeFinanceHub.WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "HomeFinanceHub.WebApi\\Program.cs",
+              "ToolTip": "C:\\Codes\\Testes T\u00E9cnicos\\MaxiProd\\HomeFinanceHub\\Backend\\HomeFinanceHub\\HomeFinanceHub.WebApi\\Program.cs",
+              "RelativeToolTip": "HomeFinanceHub.WebApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T20:43:58.977Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

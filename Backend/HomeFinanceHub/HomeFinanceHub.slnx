@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="HomeFinanceHub.Application/HomeFinanceHub.Application.csproj" />
+  <Project Path="HomeFinanceHub.Domain/HomeFinanceHub.Domain.csproj" />
+  <Project Path="HomeFinanceHub.Infrastructure/HomeFinanceHub.Infrastructure.csproj" />
+  <Project Path="HomeFinanceHub.WebApi/HomeFinanceHub.WebApi.csproj" />
+</Solution>
