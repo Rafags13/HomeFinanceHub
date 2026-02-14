@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HomeFinanceHub.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+567eb7e8718ab4046cf161c8fbb3190839a4d2bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a0f0dcd287024f871b0b9e5d10bba52322a0951")]
 [assembly: System.Reflection.AssemblyProductAttribute("HomeFinanceHub.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HomeFinanceHub.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
