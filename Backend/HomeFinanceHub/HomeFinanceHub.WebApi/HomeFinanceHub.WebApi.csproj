@@ -18,11 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Endpoints\" />
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\HomeFinanceHub.Application\HomeFinanceHub.Application.csproj" />
     <ProjectReference Include="..\HomeFinanceHub.Infrastructure\HomeFinanceHub.Infrastructure.csproj" />
   </ItemGroup>
 

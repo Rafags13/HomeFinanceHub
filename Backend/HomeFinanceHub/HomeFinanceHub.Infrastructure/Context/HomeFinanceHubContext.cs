@@ -10,6 +10,8 @@ namespace HomeFinanceHub.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(HomeFinanceHubContext).Assembly);
+
             base.OnModelCreating(modelBuilder);
         }
 

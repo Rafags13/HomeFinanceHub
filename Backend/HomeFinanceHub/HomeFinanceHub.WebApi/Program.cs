@@ -1,4 +1,6 @@
+using HomeFinanceHub.Application.Extensions.Services;
 using HomeFinanceHub.Infrastructure.Extensions;
+using HomeFinanceHub.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureInfrastructure(builder.Configuration);
+builder.Services
+    .AddApplicationServices()
+    .ConfigureInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
@@ -17,5 +21,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapEndpoints();
 
 app.Run();
