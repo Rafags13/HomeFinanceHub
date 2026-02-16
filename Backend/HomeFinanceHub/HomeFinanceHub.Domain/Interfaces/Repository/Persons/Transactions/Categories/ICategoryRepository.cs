@@ -11,5 +11,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions.Categ
         Task<bool> CreateAsync(RequestCreateCategoryDTO content, CancellationToken cancellationToken = default);
         Task<PaginatedDTO<ResponsePaginatedCategoryDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
         Task<EExpenseCategoryType?> GetPurposeTypeAsync(long id, CancellationToken cancellationToken = default);
+        Task<KeyValuePair<long, string>[]> SearchAsync(string? name, CancellationToken cancellationToken = default);
     }
 }

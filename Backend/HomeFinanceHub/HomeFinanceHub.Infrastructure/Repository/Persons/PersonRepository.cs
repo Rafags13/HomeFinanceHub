@@ -5,6 +5,7 @@ using HomeFinanceHub.Domain.Enums.Transaction;
 using HomeFinanceHub.Domain.Extensions;
 using HomeFinanceHub.Domain.Interfaces.Repository.Persons;
 using HomeFinanceHub.Infrastructure.Context;
+using HomeFinanceHub.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeFinanceHub.Infrastructure.Repository.Persons
@@ -88,6 +89,18 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
             return GetAll(x => x.Id == id)
                 .Select(x => (int?)x.Age)
                 .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public Task<KeyValuePair<long, string>[]> SearchAsync(string? name, CancellationToken cancellationToken = default)
+        {
+            var query = GetAll();
+
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(x => x.NormalizedName.Contains(name.StringNormalization()));
+
+            return query
+                .Select(x => new KeyValuePair<long, string>(x.Id, x.Name))
+                .ToArrayAsync(cancellationToken);
         }
     }
 }

@@ -81,6 +81,18 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
                 .Produces<PaginatedPersonItemDTO>(StatusCodes.Status200OK)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 
+            root.MapGet("search", async (
+                [FromServices] ISearchPersonService service,
+                [FromQuery] string? name,
+                CancellationToken cancellationToken = default
+            ) =>
+            {
+                return await service.SearchAsync(name, cancellationToken);
+            })
+                .WithDescription("Endpoint responsável por retornar a listagem para busca de uma pessoa pelo nome.")
+                .Produces<IEnumerable<KeyValuePair<long, string>>>(StatusCodes.Status200OK)
+                .Produces<BaseError>(StatusCodes.Status500InternalServerError);
+
             return endpointRouteBuilder;
         }
     }
