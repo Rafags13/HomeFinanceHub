@@ -78,7 +78,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
                 return await service.GetPaginatedAsync(page, pageSize, cancellationToken);
             })
                 .WithDescription("Endpoint responsável por listar de forma paginada as pessoas do sistema")
-                .Produces<ResponsePaginatedPersonDTO>(StatusCodes.Status200OK)
+                .Produces<PaginatedPersonItemDTO>(StatusCodes.Status200OK)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 
             return endpointRouteBuilder;

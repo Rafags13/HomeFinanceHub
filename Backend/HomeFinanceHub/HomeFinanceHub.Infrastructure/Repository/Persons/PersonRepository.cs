@@ -1,7 +1,7 @@
-﻿using HomeFinanceHub.Domain.DTOs.Comon;
-using HomeFinanceHub.Domain.DTOs.Person.Request;
+﻿using HomeFinanceHub.Domain.DTOs.Person.Request;
 using HomeFinanceHub.Domain.DTOs.Person.Response;
 using HomeFinanceHub.Domain.Entities.Persons;
+using HomeFinanceHub.Domain.Enums.Transaction;
 using HomeFinanceHub.Domain.Extensions;
 using HomeFinanceHub.Domain.Interfaces.Repository.Persons;
 using HomeFinanceHub.Infrastructure.Context;
@@ -47,7 +47,7 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
             return await Context.Person.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<PaginatedDTO<ResponsePaginatedPersonDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
+        public async Task<ResponsePaginatedPersonDTO> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
         {
             var query = GetAll();
 
@@ -55,10 +55,27 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
 
             var items = await query
                 .Paginate(page, pageSize)
-                .Select(x => new ResponsePaginatedPersonDTO(x.Id, x.Name, x.Age))
+                .Select(x => new PaginatedPersonItemDTO(
+                    x.Id,
+                    x.Name,
+                    x.Age,
+                    x.Transactions
+                        .GroupBy(y => y.Type)
+                        .Select(y => new KeyValuePair<EExpenseCategoryType, decimal>(y.Key, y.Sum(z => z.Value))),
+                    x.Transactions
+                        .Sum(y => y.Type == EExpenseCategoryType.Expenditure ? (y.Value * -1) : y.Value)))
                 .ToArrayAsync(cancellationToken);
 
-            return new PaginatedDTO<ResponsePaginatedPersonDTO>(items, page, pageSize, totalItems);
+            var expensesGroupedByType = await Context.Transaction
+                .GroupBy(x => x.Type, (transaction) => new
+                {
+                    transaction.Type,
+                    transaction.Value
+                })
+                .Select(x => new KeyValuePair<EExpenseCategoryType, decimal>(x.Key, x.Sum(z => z.Type == EExpenseCategoryType.Expenditure ? (z.Value * -1) : z.Value)))
+                .ToArrayAsync(cancellationToken);
+
+            return new ResponsePaginatedPersonDTO(items, page, pageSize, totalItems, expensesGroupedByType, expensesGroupedByType.Sum(x => x.Value));
         }
 
         public Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default)

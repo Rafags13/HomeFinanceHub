@@ -1,13 +1,15 @@
 ﻿using HomeFinanceHub.Domain.DTOs.Person.Transaction.Request;
 using HomeFinanceHub.Domain.Entities.Common;
 using HomeFinanceHub.Domain.Enums.Transaction;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeFinanceHub.Domain.Entities.Persons.Transactions
 {
-    public class Transaction : BaseEntity
+    public class Transaction : BaseDeletableEntity
     {
         public string? Description { get; init; }
+        [Range(0.0, double.MaxValue)]
         public decimal Value { get; init; }
         public EExpenseCategoryType Type { get; init; }
         public long CategoryId { get; init; }

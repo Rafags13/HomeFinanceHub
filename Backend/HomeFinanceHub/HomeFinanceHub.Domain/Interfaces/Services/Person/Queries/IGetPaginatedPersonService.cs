@@ -5,6 +5,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Services.Person.Queries
 {
     public interface IGetPaginatedPersonService
     {
-        Task<PaginatedDTO<ResponsePaginatedPersonDTO>> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
+        Task<ResponsePaginatedPersonDTO> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
     }
 }

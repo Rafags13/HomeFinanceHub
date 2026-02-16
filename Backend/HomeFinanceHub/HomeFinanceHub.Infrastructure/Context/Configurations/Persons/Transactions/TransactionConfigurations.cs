@@ -10,6 +10,8 @@ namespace HomeFinanceHub.Infrastructure.Context.Configurations.Persons.Transacti
         {
             builder.Property(x => x.Description)
                 .HasMaxLength(400);
+
+            builder.HasQueryFilter(x => !x.DeletedAt.HasValue);
         }
     }
 }
