@@ -12,6 +12,7 @@ namespace HomeFinanceHub.Application.Extensions.Services.Person.Transaction.Cate
         {
             services.AddTransient<ICreateCategoryService, CreateCategoryService>();
             services.AddTransient<IGetPaginatedCategoryService, GetPaginatedCategoryService>();
+            services.AddTransient<ISearchCategoryService, SearchCategoryService>();
 
             return services;
         }

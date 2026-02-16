@@ -47,6 +47,18 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person.Transaction.Category
                 .Produces<BaseError>(StatusCodes.Status400BadRequest)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 
+            root.MapGet("search", async (
+                [FromServices] ISearchCategoryService service,
+                [FromQuery] string? name,
+                CancellationToken cancellationToken = default
+            ) =>
+            {
+                return await service.SearchAsync(name, cancellationToken);
+            })
+                .WithDescription("Endpoint responsável por retornar a listagem de categorias filtradas pelo nome")
+                .Produces<IEnumerable<KeyValuePair<long, string>>>(StatusCodes.Status200OK)
+                .Produces<BaseError>(StatusCodes.Status500InternalServerError);
+
             return endpointRouteBuilder;
         }
     }

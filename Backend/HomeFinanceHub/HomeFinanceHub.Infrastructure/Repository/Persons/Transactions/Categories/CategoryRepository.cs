@@ -6,6 +6,7 @@ using HomeFinanceHub.Domain.Enums.Transaction;
 using HomeFinanceHub.Domain.Extensions;
 using HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions.Categories;
 using HomeFinanceHub.Infrastructure.Context;
+using HomeFinanceHub.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeFinanceHub.Infrastructure.Repository.Persons.Transactions.Categories
@@ -39,6 +40,17 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons.Transactions.Categori
                 .ToArrayAsync(cancellationToken);
 
             return new PaginatedDTO<ResponsePaginatedCategoryDTO>(items, page, pageSize, totalItems);
+        }
+
+        public Task<KeyValuePair<long, string>[]> SearchAsync(string? name, CancellationToken cancellationToken = default)
+        {
+            var query = GetAll();
+
+            if(!string.IsNullOrWhiteSpace(name))
+                query = query.Where(x => x.NormalizedDescription.Contains(name.StringNormalization()));
+
+            return query.Select(x => new KeyValuePair<long, string>(x.Id, x.Description))
+                .ToArrayAsync(cancellationToken);
         }
     }
 }
