@@ -1,11 +1,15 @@
-﻿using HomeFinanceHub.Domain.Interfaces.UoW;
+﻿using HomeFinanceHub.Domain.Interfaces.Repository.Persons;
+using HomeFinanceHub.Domain.Interfaces.UoW;
 using HomeFinanceHub.Infrastructure.Context;
+using HomeFinanceHub.Infrastructure.Repository.Persons;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HomeFinanceHub.Infrastructure.UoW
 {
     internal class UnitOfWork(HomeFinanceHubContext context) : IUnitOfWork
     {
+        public IPersonRepository PersonRepository { get; private set; } = new PersonRepository(context);
+
         public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct)
         {
             return context.Database.BeginTransactionAsync(ct);

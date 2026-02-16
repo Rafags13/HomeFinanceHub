@@ -8,13 +8,12 @@
 
   <ItemGroup>
     <Folder Include="Enums\" />
-    <Folder Include="Errors\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="DTOs\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Include="OneOf" Version="3.0.271" />
   </ItemGroup>
 
 </Project>
