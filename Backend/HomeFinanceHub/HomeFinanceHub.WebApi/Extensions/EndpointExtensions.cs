@@ -1,4 +1,5 @@
 ﻿using HomeFinanceHub.WebApi.Endpoints.Person;
+using HomeFinanceHub.WebApi.Endpoints.Person.Transaction;
 using HomeFinanceHub.WebApi.Endpoints.Person.Transaction.Category;
 
 namespace HomeFinanceHub.WebApi.Extensions
@@ -9,7 +10,8 @@ namespace HomeFinanceHub.WebApi.Extensions
         {
             return endpointRouteBuilder
                 .MapPersonEndpoints()
-                .MapCategoryEndpoints();
+                .MapCategoryEndpoints()
+                .MapTransactionEndpoints();
         }
     }
 }

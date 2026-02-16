@@ -1,9 +1,11 @@
 ﻿using HomeFinanceHub.Domain.Interfaces.Repository.Persons;
-using HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transaction;
+using HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions;
+using HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions.Categories;
 using HomeFinanceHub.Domain.Interfaces.UoW;
 using HomeFinanceHub.Infrastructure.Context;
 using HomeFinanceHub.Infrastructure.Repository.Persons;
-using HomeFinanceHub.Infrastructure.Repository.Persons.Transaction;
+using HomeFinanceHub.Infrastructure.Repository.Persons.Transactions;
+using HomeFinanceHub.Infrastructure.Repository.Persons.Transactions.Categories;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HomeFinanceHub.Infrastructure.UoW
@@ -16,6 +18,7 @@ namespace HomeFinanceHub.Infrastructure.UoW
 
         #region [Transaction]
         public ICategoryRepository CategoryRepository { get; private set; } = new CategoryRepository(context);
+        public ITransactionRepository TransactionRepository { get; private set; } = new TransactionRepository(context);
         #endregion
 
         public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct)

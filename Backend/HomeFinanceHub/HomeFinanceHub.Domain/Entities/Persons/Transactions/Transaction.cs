@@ -1,4 +1,5 @@
-﻿using HomeFinanceHub.Domain.Entities.Common;
+﻿using HomeFinanceHub.Domain.DTOs.Person.Transaction.Request;
+using HomeFinanceHub.Domain.Entities.Common;
 using HomeFinanceHub.Domain.Enums.Transaction;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,17 @@ namespace HomeFinanceHub.Domain.Entities.Persons.Transactions
         public EExpenseCategoryType Type { get; init; }
         public long CategoryId { get; init; }
         public long PersonId { get; init; }
+
+        protected Transaction() { }
+
+        public Transaction(RequestCreateTransactionDTO content)
+        {
+            Description = content.Description;
+            Value = content.Value;
+            Type = content.Type;
+            CategoryId = content.CategoryId;
+            PersonId = content.PersonId;
+        }
 
         #region [Foreign Keys]
         [ForeignKey(nameof(CategoryId))]

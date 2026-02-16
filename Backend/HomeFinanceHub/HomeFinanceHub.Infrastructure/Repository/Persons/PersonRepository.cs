@@ -65,5 +65,12 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
         {
             return AnyAsync(x => x.Name == name, cancellationToken);
         }
+
+        public Task<int?> GetAgeAsync(long id, CancellationToken cancellationToken = default)
+        {
+            return GetAll(x => x.Id == id)
+                .Select(x => (int?)x.Age)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

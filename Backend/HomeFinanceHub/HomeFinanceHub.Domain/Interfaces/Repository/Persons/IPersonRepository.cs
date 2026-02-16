@@ -12,5 +12,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Repository.Persons
         Task<bool> DeleteAsync(long id, CancellationToken cancellationToken = default);
         Task<PaginatedDTO<ResponsePaginatedPersonDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
         Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default);
+        Task<int?> GetAgeAsync(long id, CancellationToken cancellationToken = default);
     }
 }
