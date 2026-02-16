@@ -11,7 +11,7 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
 {
     internal sealed class PersonRepository(HomeFinanceHubContext context) : BaseRepository<Person>(context), IPersonRepository
     {
-        public async Task<bool> CreateAsync(CreatePersonDTO content, CancellationToken cancellationToken = default)
+        public async Task<bool> CreateAsync(RequestCreatePersonDTO content, CancellationToken cancellationToken = default)
         {
             var person = new Person(content);
 
@@ -20,7 +20,7 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
             return await Context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-        public async Task<bool> UpdateAsync(UpdatePersonDTO content, CancellationToken cancellationToken = default)
+        public async Task<bool> UpdateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default)
         {
             var person = await GetByIdAsync(content.Id, cancellationToken);
 
@@ -47,7 +47,7 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
             return await Context.Person.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<PaginatedDTO<PaginatedPersonDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
+        public async Task<PaginatedDTO<ResponsePaginatedPersonDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
         {
             var query = GetAll();
 
@@ -55,10 +55,10 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
 
             var items = await query
                 .Paginate(page, pageSize)
-                .Select(x => new PaginatedPersonDTO(x.Id, x.Name, x.Age))
+                .Select(x => new ResponsePaginatedPersonDTO(x.Id, x.Name, x.Age))
                 .ToArrayAsync(cancellationToken);
 
-            return new PaginatedDTO<PaginatedPersonDTO>(items, page, pageSize, totalItems);
+            return new PaginatedDTO<ResponsePaginatedPersonDTO>(items, page, pageSize, totalItems);
         }
 
         public Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default)

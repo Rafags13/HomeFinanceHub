@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using HomeFinanceHub.Application.Extensions.Services.Person;
+using HomeFinanceHub.Application.Extensions.Services.Person.Transaction.Category;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeFinanceHub.Application.Extensions.Services
 {
@@ -6,7 +8,8 @@ namespace HomeFinanceHub.Application.Extensions.Services
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            return services.AddPersonServices();
+            return services.AddPersonServices()
+                .AddCategoryServices();
         }
     }
 }

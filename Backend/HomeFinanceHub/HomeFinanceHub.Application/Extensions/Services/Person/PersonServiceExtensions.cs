@@ -4,7 +4,7 @@ using HomeFinanceHub.Domain.Interfaces.Services.Person.Commands;
 using HomeFinanceHub.Domain.Interfaces.Services.Person.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HomeFinanceHub.Application.Extensions.Services
+namespace HomeFinanceHub.Application.Extensions.Services.Person
 {
     internal static class PersonServiceExtensions
     {

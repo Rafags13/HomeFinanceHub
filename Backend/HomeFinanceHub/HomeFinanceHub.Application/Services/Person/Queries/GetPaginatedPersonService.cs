@@ -9,7 +9,7 @@ namespace HomeFinanceHub.Application.Services.Person.Queries
         IUnitOfWork unitOfWork
     ) : IGetPaginatedPersonService
     {
-        public Task<PaginatedDTO<PaginatedPersonDTO>> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
+        public Task<PaginatedDTO<ResponsePaginatedPersonDTO>> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
         {
             return unitOfWork.PersonRepository.PaginateAsync(page, pageSize, cancellationToken);
         }

@@ -12,7 +12,7 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
         IUnitOfWork unitOfWork
     ) : IUpdatePersonService
     {
-        public async Task<OneOf<bool, BaseError>> UpdateAsync(UpdatePersonDTO content, CancellationToken cancellationToken = default)
+        public async Task<OneOf<bool, BaseError>> UpdateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default)
         {
             var error = await ValidateAsync(content, cancellationToken);
             if (error != null) return error;
@@ -23,7 +23,7 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
             return true;
         }
 
-        private async Task<BaseError?> ValidateAsync(UpdatePersonDTO content, CancellationToken cancellationToken = default)
+        private async Task<BaseError?> ValidateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default)
         {
             if (content.Name.Length > PersonContants.MAX_NAME_LENGTH)
                 return new PersonNameMaxLengthError(PersonContants.MAX_NAME_LENGTH);
