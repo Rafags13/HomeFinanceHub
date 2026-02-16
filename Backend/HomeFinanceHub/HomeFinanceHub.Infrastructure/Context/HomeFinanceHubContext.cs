@@ -1,5 +1,6 @@
 ﻿using HomeFinanceHub.Domain.Entities.Common;
 using HomeFinanceHub.Domain.Entities.Persons;
+using HomeFinanceHub.Domain.Entities.Persons.Transactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeFinanceHub.Infrastructure.Context
@@ -7,6 +8,8 @@ namespace HomeFinanceHub.Infrastructure.Context
     public class HomeFinanceHubContext(DbContextOptions<HomeFinanceHubContext> options) : DbContext(options)
     {
         public DbSet<Person> Person { get; private set; }
+        public DbSet<Category> Category { get; private set; }
+        public DbSet<Transaction> Transaction { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

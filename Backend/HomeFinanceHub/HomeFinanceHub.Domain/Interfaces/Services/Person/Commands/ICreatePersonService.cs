@@ -6,6 +6,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Services.Person.Commands
 {
     public interface ICreatePersonService
     {
-        Task<OneOf<bool, BaseError>> CreateAsync(CreatePersonDTO content, CancellationToken cancellationToken = default);
+        Task<OneOf<bool, BaseError>> CreateAsync(RequestCreatePersonDTO content, CancellationToken cancellationToken = default);
     }
 }

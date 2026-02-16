@@ -17,7 +17,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
 
             root.MapPost("", async (
                 [FromServices] ICreatePersonService service,
-                [FromBody] CreatePersonDTO content,
+                [FromBody] RequestCreatePersonDTO content,
                 CancellationToken cancellationToken = default
             ) =>
             {
@@ -34,7 +34,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
 
             root.MapPatch("", async (
                 [FromServices] IUpdatePersonService service,
-                [FromBody] UpdatePersonDTO content,
+                [FromBody] RequestUpdatePersonDTO content,
                 CancellationToken cancellationToken = default
             ) =>
             {
@@ -78,7 +78,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
                 return await service.GetPaginatedAsync(page, pageSize, cancellationToken);
             })
                 .WithDescription("Endpoint responsável por listar de forma paginada as pessoas do sistema")
-                .Produces<PaginatedPersonDTO>(StatusCodes.Status200OK)
+                .Produces<PaginatedPersonItemDTO>(StatusCodes.Status200OK)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 
             return endpointRouteBuilder;

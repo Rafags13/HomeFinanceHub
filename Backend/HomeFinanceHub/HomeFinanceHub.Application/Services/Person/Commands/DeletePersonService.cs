@@ -15,8 +15,16 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
             var error = await ValidateAsync(id, cancellationToken);
             if (error != null) return error;
 
+            await using var transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
+
+            if (await unitOfWork.TransactionRepository.AnyAsync(x => x.PersonId == id, cancellationToken) &&
+                await unitOfWork.TransactionRepository.DeleteRangeAsync(id, cancellationToken) == 0)
+                return new DatabaseError();
+
             if (!await unitOfWork.PersonRepository.DeleteAsync(id, cancellationToken))
                 return new DatabaseError();
+
+            await transaction.CommitAsync(cancellationToken);
 
             return true;
         }

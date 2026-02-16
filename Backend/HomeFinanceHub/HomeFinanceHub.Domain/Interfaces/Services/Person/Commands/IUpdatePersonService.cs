@@ -6,6 +6,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Services.Person.Commands
 {
     public interface IUpdatePersonService
     {
-        Task<OneOf<bool, BaseError>> UpdateAsync(UpdatePersonDTO content, CancellationToken cancellationToken = default);
+        Task<OneOf<bool, BaseError>> UpdateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default);
     }
 }

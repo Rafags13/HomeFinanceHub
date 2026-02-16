@@ -7,10 +7,11 @@ namespace HomeFinanceHub.Domain.Interfaces.Repository.Persons
 {
     public interface IPersonRepository : IBaseRepository<Person>
     {
-        Task<bool> CreateAsync(CreatePersonDTO content, CancellationToken cancellationToken = default);
-        Task<bool> UpdateAsync(UpdatePersonDTO content, CancellationToken cancellationToken = default);
+        Task<bool> CreateAsync(RequestCreatePersonDTO content, CancellationToken cancellationToken = default);
+        Task<bool> UpdateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default);
         Task<bool> DeleteAsync(long id, CancellationToken cancellationToken = default);
-        Task<PaginatedDTO<PaginatedPersonDTO>> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
+        Task<ResponsePaginatedPersonDTO> PaginateAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
         Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default);
+        Task<int?> GetAgeAsync(long id, CancellationToken cancellationToken = default);
     }
 }
