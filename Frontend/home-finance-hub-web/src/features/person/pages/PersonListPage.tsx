@@ -33,12 +33,12 @@ export default function PersonList() {
           </h1>
 
           <button
-            className="cursor-pointer"
+            className="cursor-pointer p-2 border rounded-md mt-4 text-black"
             onClick={() => {
               navigate("person/create");
             }}
           >
-            Create
+            Create +
           </button>
         </div>
 
