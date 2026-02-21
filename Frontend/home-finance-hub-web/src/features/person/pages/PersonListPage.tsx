@@ -25,9 +25,9 @@ export default function PersonList() {
   }
 
   return (
-    <div className="flex flex-col gap-2 h-full">
-      <div className="flex-1">
-        <div className="flex flex-row justify-between">
+    <>
+      <section className="flex-1">
+        <article className="flex flex-row justify-between">
           <h1 className="text-3xl font-bold">
             Persons ({isLoading ? "-" : data?.totalItems})
           </h1>
@@ -40,9 +40,9 @@ export default function PersonList() {
           >
             Create +
           </button>
-        </div>
+        </article>
 
-        <section className="flex flex-col gap-2 mt-6">
+        <article className="flex flex-col gap-2 mt-6">
           {isLoading ? (
             <></>
           ) : (
@@ -54,10 +54,10 @@ export default function PersonList() {
               />
             ))
           )}
-        </section>
-      </div>
+        </article>
+      </section>
 
-      <div className="mt-6">
+      <section className="mt-6">
         {isLoading ? (
           <></>
         ) : (
@@ -69,7 +69,7 @@ export default function PersonList() {
             }}
           />
         )}
-      </div>
+      </section>
 
       <Modal
         isOpen={isModalOpen}
@@ -79,6 +79,6 @@ export default function PersonList() {
       >
         <span>teste</span>
       </Modal>
-    </div>
+    </>
   );
 }

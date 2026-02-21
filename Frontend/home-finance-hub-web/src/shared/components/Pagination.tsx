@@ -59,7 +59,10 @@ export function Pagination({
   if (totalItems < 0) return null;
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-6">
+    <nav
+      className="flex items-center justify-center gap-2 mt-6"
+      aria-label="pagination"
+    >
       <button
         onClick={() => {
           onPageChange(currentPage - 1);
@@ -97,6 +100,6 @@ export function Pagination({
       >
         Next
       </button>
-    </div>
+    </nav>
   );
 }
