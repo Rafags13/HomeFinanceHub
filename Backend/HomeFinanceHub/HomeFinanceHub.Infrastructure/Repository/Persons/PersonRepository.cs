@@ -102,5 +102,12 @@ namespace HomeFinanceHub.Infrastructure.Repository.Persons
                 .Select(x => new KeyValuePair<long, string>(x.Id, x.Name))
                 .ToArrayAsync(cancellationToken);
         }
+
+        public Task<PersonDTO?> GetAsync(long id, CancellationToken cancellationToken = default)
+        {
+            return GetAll(x => x.Id == id)
+                .Select(x => new PersonDTO(x.Id, x.Name, x.Age))
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

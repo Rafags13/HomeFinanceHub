@@ -93,6 +93,24 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person
                 .Produces<IEnumerable<KeyValuePair<long, string>>>(StatusCodes.Status200OK)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 
+            root.MapGet("{id:long}", async (
+                [FromServices] IGetPersonService service,
+                [FromRoute] long id,
+                CancellationToken cancellationToken = default
+            ) =>
+            {
+                var result = await service.GetAsync(id, cancellationToken);
+
+                return result.Match(
+                    success => Results.Ok(success),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode)
+                );
+            })
+                .WithDescription("Endpoint responsável por retornar a pessoa buscada.")
+                .Produces<PersonDTO>(StatusCodes.Status200OK)
+                .Produces<BaseError>(StatusCodes.Status404NotFound)
+                .Produces<BaseError>(StatusCodes.Status500InternalServerError);
+
             return endpointRouteBuilder;
         }
     }
