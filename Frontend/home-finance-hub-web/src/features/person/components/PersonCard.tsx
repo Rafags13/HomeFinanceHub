@@ -5,9 +5,9 @@ import CardSecondaryInformations from "../../../shared/components/card/CardSecon
 import CardTitle from "../../../shared/components/card/CardTitle";
 import { formatCurrency } from "../../../shared/utils/number-helper";
 import { EPersonCardAction } from "../types/enums/person-card-action.enum";
-import type { PersonDTO } from "../types/interfaces/person.dto";
+import type { PersonItemDTO } from "../types/interfaces/person-item.dto";
 
-interface PersonCardProps extends PersonDTO {
+interface PersonCardProps extends PersonItemDTO {
   onCardAction: (action: EPersonCardAction, id: number) => void;
 }
 

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const personSchema = z.object({
+export const createPersonSchema = z.object({
   name: z
     .string()
     .min(3, { error: "Name must be at least 3 characters long" })
@@ -11,4 +11,4 @@ export const personSchema = z.object({
     .max(150, { error: "Age cannot exceed 150 years old" }),
 });
 
-export type PersonSchemaValues = z.infer<typeof personSchema>;
+export type CreatePersonSchemaValues = z.infer<typeof createPersonSchema>;

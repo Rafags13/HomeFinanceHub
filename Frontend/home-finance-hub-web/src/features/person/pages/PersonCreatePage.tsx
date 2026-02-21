@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { usePersonForm } from "../hooks/usePersonForm";
-import type { PersonSchemaValues } from "../schemas/person.schema";
+import { useCreatePersonForm } from "../hooks/useCreatePersonForm";
+import type { CreatePersonSchemaValues } from "../schemas/create-person.schema";
 import { useCreatePerson } from "../api/person.queries";
 
 export default function PersonCreate() {
-  const { register, handleSubmit, formState } = usePersonForm();
+  const { register, handleSubmit, formState } = useCreatePersonForm();
 
   const { mutateAsync } = useCreatePerson();
 
   const navigator = useNavigate();
 
-  const onSubmit = async (data: PersonSchemaValues) => {
+  const onSubmit = async (data: CreatePersonSchemaValues) => {
     await mutateAsync(data);
     goBack();
   };
@@ -20,7 +20,7 @@ export default function PersonCreate() {
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-3xl font-bold">Create Person</h1>
 
       <form
@@ -77,6 +77,6 @@ export default function PersonCreate() {
           </button>
         </div>
       </form>
-    </div>
+    </>
   );
 }

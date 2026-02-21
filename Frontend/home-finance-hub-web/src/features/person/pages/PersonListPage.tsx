@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Modal } from "../../../shared/components/Modal";
 import { Pagination } from "../../../shared/components/Pagination";
 import { useNavigate } from "react-router-dom";
-import { usePerson } from "../api/person.queries";
+import { usePaginatedPerson } from "../api/person.queries";
 
 export default function PersonList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,7 +12,7 @@ export default function PersonList() {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = usePerson(currentPage);
+  const { data, isLoading } = usePaginatedPerson(currentPage);
 
   function onCardAction(action: EPersonCardAction, id: number) {
     if (action === EPersonCardAction.Remove) {
