@@ -47,7 +47,11 @@ export default function PersonList() {
             <></>
           ) : (
             data?.items.map((person) => (
-              <PersonCard {...person} onCardAction={onCardAction} />
+              <PersonCard
+                key={person.id}
+                {...person}
+                onCardAction={onCardAction}
+              />
             ))
           )}
         </section>
