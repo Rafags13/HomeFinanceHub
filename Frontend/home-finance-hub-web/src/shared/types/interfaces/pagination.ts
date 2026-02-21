@@ -1,0 +1,6 @@
+export interface Pagination<T> {
+  items: T[];
+  page: number;
+  pageSize: number;
+  totalItems: number;
+}

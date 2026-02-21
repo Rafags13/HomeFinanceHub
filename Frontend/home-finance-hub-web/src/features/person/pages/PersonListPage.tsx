@@ -1,0 +1,80 @@
+import PersonCard from "../components/PersonCard";
+import { EPersonCardAction } from "../types/enums/person-card-action.enum";
+import { useState } from "react";
+import { Modal } from "../../../shared/components/Modal";
+import { Pagination } from "../../../shared/components/Pagination";
+import { useNavigate } from "react-router-dom";
+import { usePerson } from "../api/person.queries";
+
+export default function PersonList() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const navigate = useNavigate();
+
+  const { data, isLoading } = usePerson(currentPage);
+
+  function onCardAction(action: EPersonCardAction, id: number) {
+    if (action === EPersonCardAction.Remove) {
+      setIsModalOpen(true);
+    }
+
+    if (action === EPersonCardAction.Edit) {
+      navigate(`person/edit/${id}`);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2 h-full">
+      <div className="flex-1">
+        <div className="flex flex-row justify-between">
+          <h1 className="text-3xl font-bold">
+            Persons ({isLoading ? "-" : data?.totalItems})
+          </h1>
+
+          <button
+            className="cursor-pointer"
+            onClick={() => {
+              navigate("person/create");
+            }}
+          >
+            Create
+          </button>
+        </div>
+
+        <section className="flex flex-col gap-2 mt-6">
+          {isLoading ? (
+            <></>
+          ) : (
+            data?.items.map((person) => (
+              <PersonCard {...person} onCardAction={onCardAction} />
+            ))
+          )}
+        </section>
+      </div>
+
+      <div className="mt-6">
+        {isLoading ? (
+          <></>
+        ) : (
+          <Pagination
+            currentPage={currentPage}
+            totalItems={data?.totalItems ?? 0}
+            onPageChange={(page) => {
+              setCurrentPage(page);
+            }}
+          />
+        )}
+      </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+      >
+        <span>teste</span>
+      </Modal>
+    </div>
+  );
+}
