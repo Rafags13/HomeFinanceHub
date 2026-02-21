@@ -16,6 +16,7 @@ namespace HomeFinanceHub.Application.Extensions.Services.Person
 
             services.AddTransient<IGetPaginatedPersonService, GetPaginatedPersonService>();
             services.AddTransient<ISearchPersonService, SearchPersonService>();
+            services.AddTransient<IGetPersonService, GetPersonService>();
 
             return services;
         }
