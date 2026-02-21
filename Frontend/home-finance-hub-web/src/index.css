@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
-:root {
-  /* background-color: #242424; */
+@layer components {
+  .tw-title {
+    @apply text-3xl font-bold;
+  }
+
+  .tw-label-container {
+    @apply flex flex-col gap-1;
+  }
+
+  .tw-label-text {
+    @apply font-medium;
+  }
+
+  .tw-input {
+    @apply p-2 border rounded-sm border-black;
+  }
+
+  .tw-error-message {
+    @apply text-red-600 font-medium;
+  }
+
+  .tw-button-solid {
+    @apply p-2 border rounded-md cursor-pointer mt-4 bg-black text-white font-bold w-full;
+  }
+
+  .tw-button-outlined {
+    @apply p-2 border rounded-md cursor-pointer mt-4 text-black w-full;
+  }
 }

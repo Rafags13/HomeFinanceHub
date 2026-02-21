@@ -21,58 +21,47 @@ export default function PersonCreate() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Create Person</h1>
+      <h1 className="tw-title">Create Person</h1>
 
       <form
         className="flex flex-col my-4 gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
-          <label className="flex flex-col gap-1" htmlFor="name">
-            <span className="font-medium">Name</span>
+          <label className="tw-label-container" htmlFor="name">
+            <span className="tw-label-text">Name</span>
             <input
               id="name"
-              className={`p-2 border rounded-sm ${formState.errors.name ? "border-red-600" : "border-black"} `}
+              className={`tw-input ${formState.errors.name ? "border-red-600" : ""}`}
               {...register("name")}
             />
           </label>
           {formState.errors.name ? (
-            <p className="text-red-600 font-medium">
-              {formState.errors.name.message}
-            </p>
+            <p className="tw-error-message">{formState.errors.name.message}</p>
           ) : null}
         </div>
 
         <div>
-          <label className="flex flex-col gap-1" htmlFor="age">
-            <span className="font-medium">Age</span>
+          <label className="tw-label-container" htmlFor="age">
+            <span className="tw-label-text">Age</span>
             <input
               id="age"
               type="number"
               {...register("age", { valueAsNumber: true })}
-              className={`p-2 border rounded-sm ${formState.errors.age ? "border-red-600" : "border-black"}`}
+              className={`tw-input ${formState.errors.age ? "border-red-600" : ""}`}
             />
           </label>
           {formState.errors.age ? (
-            <p className="text-red-600 font-medium">
-              {formState.errors.age.message}
-            </p>
+            <p className="tw-error-message">{formState.errors.age.message}</p>
           ) : null}
         </div>
 
         <div className="flex flex-row gap-2 w-full">
-          <button
-            type="submit"
-            className="p-2 border rounded-md cursor-pointer mt-4 bg-black text-white font-bold w-full"
-          >
+          <button type="submit" className="tw-button-solid">
             Save
           </button>
 
-          <button
-            type="button"
-            className="p-2 border rounded-md cursor-pointer mt-4 text-black w-full"
-            onClick={goBack}
-          >
+          <button type="button" className="tw-button-outlined" onClick={goBack}>
             Back
           </button>
         </div>

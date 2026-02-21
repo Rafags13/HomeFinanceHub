@@ -28,7 +28,7 @@ export default function PersonList() {
     <>
       <section className="flex-1">
         <article className="flex flex-row justify-between">
-          <h1 className="text-3xl font-bold">
+          <h1 className="tw-title">
             Persons ({isLoading ? "-" : data?.totalItems})
           </h1>
 
