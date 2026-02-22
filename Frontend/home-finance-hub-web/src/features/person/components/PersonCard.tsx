@@ -16,7 +16,7 @@ export default function PersonCard({
   name,
   age,
   balance,
-  totalExpensesByType,
+  totalExpensesByType = [],
   onCardAction,
 }: PersonCardProps) {
   return (
@@ -28,7 +28,7 @@ export default function PersonCard({
           <p>Total Balance: {formatCurrency(balance)}</p>|
           <ul className="flex flex-row gap-2">
             {totalExpensesByType.map(({ key, value }, index) => (
-              <>
+              <div key={key}>
                 <li>
                   <span>
                     {key}: {formatCurrency(value)}
@@ -37,7 +37,7 @@ export default function PersonCard({
                 <span>
                   {index != totalExpensesByType.length - 1 ? `|` : ""}
                 </span>
-              </>
+              </div>
             ))}
           </ul>
         </CardSecondaryInformations>

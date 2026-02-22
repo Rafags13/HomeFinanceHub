@@ -3,3 +3,9 @@ export enum EExpenseCategoryType {
   Revenue = "Revenue",
   Both = "Both",
 }
+
+export const expenseCategoryTypeTitle: Record<EExpenseCategoryType, string> = {
+  [EExpenseCategoryType.Expenditure]: "Despesa",
+  [EExpenseCategoryType.Revenue]: "Receita",
+  [EExpenseCategoryType.Both]: "Ambos",
+};

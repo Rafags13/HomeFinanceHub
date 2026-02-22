@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../shared/components/Layout";
-import { personRoutes } from "../features/person/routes";
+import { personRoutes } from "../features/person/routes/person.routes";
+import { categoryRoutes } from "../features/category/routes/category.routes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
-    children: [...personRoutes],
+    children: [...personRoutes, ...categoryRoutes],
   },
 ]);
 
