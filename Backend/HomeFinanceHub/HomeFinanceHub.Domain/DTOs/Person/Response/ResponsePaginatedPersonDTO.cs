@@ -1,4 +1,4 @@
-﻿using HomeFinanceHub.Domain.DTOs.Comon;
+﻿using HomeFinanceHub.Domain.DTOs.Common;
 using HomeFinanceHub.Domain.Enums.Transaction;
 
 namespace HomeFinanceHub.Domain.DTOs.Person.Response

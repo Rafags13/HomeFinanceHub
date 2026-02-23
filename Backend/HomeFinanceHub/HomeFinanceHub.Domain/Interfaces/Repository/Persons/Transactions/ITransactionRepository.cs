@@ -1,4 +1,6 @@
-﻿using HomeFinanceHub.Domain.DTOs.Person.Transaction.Request;
+﻿using HomeFinanceHub.Domain.DTOs.Common;
+using HomeFinanceHub.Domain.DTOs.Person.Transaction.Request;
+using HomeFinanceHub.Domain.DTOs.Person.Transaction.Response;
 using HomeFinanceHub.Domain.Entities.Persons.Transactions;
 
 namespace HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions
@@ -7,5 +9,6 @@ namespace HomeFinanceHub.Domain.Interfaces.Repository.Persons.Transactions
     {
         Task<bool> CreateAsync(RequestCreateTransactionDTO content, CancellationToken cancellationToken = default);
         Task<int> DeleteRangeAsync(long personId, CancellationToken cancellationToken = default);
+        Task<PaginatedDTO<ResponseTransactionItemDTO>> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default);
     }
 }
