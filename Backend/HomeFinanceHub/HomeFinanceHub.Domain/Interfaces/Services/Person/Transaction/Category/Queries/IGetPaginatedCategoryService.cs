@@ -1,4 +1,4 @@
-﻿using HomeFinanceHub.Domain.DTOs.Comon;
+﻿using HomeFinanceHub.Domain.DTOs.Common;
 using HomeFinanceHub.Domain.DTOs.Person.Transaction.Category.Response;
 
 namespace HomeFinanceHub.Domain.Interfaces.Services.Person.Transaction.Category.Queries

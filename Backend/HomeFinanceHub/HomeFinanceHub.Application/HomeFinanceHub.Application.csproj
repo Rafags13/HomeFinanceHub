@@ -17,8 +17,4 @@
     <ProjectReference Include="..\HomeFinanceHub.Infrastructure\HomeFinanceHub.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Person\Transaction\Queries\" />
-  </ItemGroup>
-
 </Project>

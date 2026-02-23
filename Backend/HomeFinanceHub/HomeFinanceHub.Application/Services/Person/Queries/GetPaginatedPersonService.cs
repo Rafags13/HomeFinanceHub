@@ -1,5 +1,4 @@
-﻿using HomeFinanceHub.Domain.DTOs.Comon;
-using HomeFinanceHub.Domain.DTOs.Person.Response;
+﻿using HomeFinanceHub.Domain.DTOs.Person.Response;
 using HomeFinanceHub.Domain.Interfaces.Services.Person.Queries;
 using HomeFinanceHub.Domain.Interfaces.UoW;
 

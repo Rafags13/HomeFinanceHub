@@ -12,9 +12,4 @@
     <PackageReference Include="OneOf" Version="3.0.271" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Person\Transaction\Response\" />
-    <Folder Include="Interfaces\Services\Person\Transaction\Queries\" />
-  </ItemGroup>
-
 </Project>
