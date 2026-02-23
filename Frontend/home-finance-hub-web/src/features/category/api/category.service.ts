@@ -1,4 +1,5 @@
 import { api } from "../../../shared/lib/axios";
+import type { KeyValuePair } from "../../../shared/types/interfaces/key-value-pair";
 import type { Pagination } from "../../../shared/types/interfaces/pagination";
 import type { CategoryDTO } from "../types/interfaces/category.dto";
 import type { CreateCategoryDTO } from "../types/interfaces/create-category.dto";
@@ -19,6 +20,17 @@ export const categoryService = {
     const { data } = await api.post<boolean>(
       "/person/transaction/category",
       body,
+    );
+
+    return data;
+  },
+
+  search: async (description: string | null) => {
+    const params = description !== null ? { name: description } : null;
+
+    const { data } = await api.get<KeyValuePair<number, string>[]>(
+      "/person/transaction/category/search",
+      { params },
     );
 
     return data;

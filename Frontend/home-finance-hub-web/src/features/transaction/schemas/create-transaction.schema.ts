@@ -14,8 +14,14 @@ export const createTransactionSchema = z.object({
   type: z.enum(EExpenseCategoryType, {
     error: "Purpose type is required",
   }),
+  categorySearch: z.string({
+    error: "Category is required",
+  }),
   categoryId: z.number({
     error: "Category is required",
+  }),
+  personSearch: z.string({
+    error: "Person is required",
   }),
   personId: z.number({
     error: "Person is required",

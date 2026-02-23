@@ -22,3 +22,9 @@ export const useUpdatePerson = () =>
   useMutation({
     mutationFn: personService.update,
   });
+
+export const useSearchPerson = (description: string | null) =>
+  useQuery({
+    queryKey: ["searchPerson", description],
+    queryFn: () => personService.search(description),
+  });

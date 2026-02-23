@@ -1,9 +1,9 @@
 import type { EExpenseCategoryType } from "../../../../shared/types/enums/expense-category-type.enum";
 
-export interface CraeteTransactionDTO {
-  description: string | null;
+export interface CreateTransactionDTO {
+  description?: string;
   value: number;
   type: EExpenseCategoryType;
-  categoryId: number | null;
-  personId: number | null;
+  categoryId: number;
+  personId: number;
 }

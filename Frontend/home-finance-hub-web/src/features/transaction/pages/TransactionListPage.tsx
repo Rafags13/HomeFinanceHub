@@ -21,7 +21,7 @@ export default function TransactionListPage() {
           <button
             className="cursor-pointer p-2 border rounded-md mt-4 text-black"
             onClick={() => {
-              navigate("/category/create");
+              navigate("/transaction/create");
             }}
           >
             Create +

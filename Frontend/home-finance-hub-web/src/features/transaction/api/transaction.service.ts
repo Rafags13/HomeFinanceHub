@@ -1,6 +1,6 @@
 import { api } from "../../../shared/lib/axios";
 import type { Pagination } from "../../../shared/types/interfaces/pagination";
-import type { CraeteTransactionDTO } from "../types/interfaces/create-transaction.dto";
+import type { CreateTransactionDTO } from "../types/interfaces/create-transaction.dto";
 import type { TransactionDTO } from "../types/interfaces/transaction.dto";
 
 export const transactionService = {
@@ -15,7 +15,7 @@ export const transactionService = {
     return data;
   },
 
-  create: async (body: CraeteTransactionDTO) => {
+  create: async (body: CreateTransactionDTO) => {
     const { data } = await api.post<boolean>("/person/transaction", body);
 
     return data;
