@@ -28,3 +28,8 @@ export const useSearchPerson = (description: string | null) =>
     queryKey: ["searchPerson", description],
     queryFn: () => personService.search(description),
   });
+
+export const useRemovePerson = () =>
+  useMutation({
+    mutationFn: personService.delete,
+  });

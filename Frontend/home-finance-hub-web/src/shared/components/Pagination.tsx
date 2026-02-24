@@ -16,7 +16,7 @@ export function Pagination({
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblingCount * 2 + 5;
 
-    const currentTotalPageNumbers = totalItems / 10 + 1;
+    const currentTotalPageNumbers = totalItems / (10 + 1) + 1;
 
     if (currentTotalPageNumbers <= totalPageNumbers) {
       return Array.from({ length: currentTotalPageNumbers }, (_, i) => i + 1);
@@ -40,6 +40,7 @@ export function Pagination({
     }
 
     for (let i = leftSiblingIndex; i <= rightSiblingIndex; i++) {
+      console.log(i);
       if (i !== 1 && i !== currentTotalPageNumbers) {
         range.push(i);
       }

@@ -4,19 +4,21 @@ import { useState } from "react";
 import { Modal } from "../../../shared/components/Modal";
 import { Pagination } from "../../../shared/components/Pagination";
 import { useNavigate } from "react-router-dom";
-import { usePaginatedPerson } from "../api/person.queries";
+import { usePaginatedPerson, useRemovePerson } from "../api/person.queries";
 
 export default function PersonList() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPersonId, setModalPersonId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
 
   const navigate = useNavigate();
 
   const { data, isLoading } = usePaginatedPerson(currentPage);
 
+  const { mutateAsync } = useRemovePerson();
+
   function onCardAction(action: EPersonCardAction, id: number) {
     if (action === EPersonCardAction.Remove) {
-      setIsModalOpen(true);
+      setModalPersonId(id);
     }
 
     if (action === EPersonCardAction.Edit) {
@@ -72,12 +74,38 @@ export default function PersonList() {
       </section>
 
       <Modal
-        isOpen={isModalOpen}
+        isOpen={modalPersonId !== null}
         onClose={() => {
-          setIsModalOpen(false);
+          setModalPersonId(null);
         }}
       >
-        <span>teste</span>
+        <h3 className="tw-subtitle text-center">
+          Do you have sure you want to remove it?
+        </h3>
+
+        <button
+          type="button"
+          className="tw-button-outlined"
+          onClick={() => {
+            setModalPersonId(null);
+          }}
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          className="tw-button-solid bg-red-500"
+          onClick={async () => {
+            if (modalPersonId) {
+              await mutateAsync(modalPersonId);
+              setCurrentPage(0);
+              setModalPersonId(null);
+            }
+          }}
+        >
+          Remove
+        </button>
       </Modal>
     </>
   );

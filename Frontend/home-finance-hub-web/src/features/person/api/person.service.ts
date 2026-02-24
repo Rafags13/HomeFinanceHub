@@ -32,6 +32,12 @@ export const personService = {
     return data;
   },
 
+  delete: async (id: number) => {
+    const { data } = await api.delete(`/person/${id}`);
+
+    return data;
+  },
+
   search: async (description: string | null) => {
     const params = description !== null ? { name: description } : null;
 
