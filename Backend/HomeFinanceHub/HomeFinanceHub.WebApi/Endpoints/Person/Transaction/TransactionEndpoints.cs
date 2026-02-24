@@ -30,7 +30,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person.Transaction
                 );
             })
                 .WithDescription("Endpoint responsável por criar uma transação vinculada a uma pessoa.")
-                .Produces<bool>(StatusCodes.Status200OK)
+                .Produces<bool>(StatusCodes.Status201Created)
                 .Produces<BaseError>(StatusCodes.Status404NotFound)
                 .Produces<BaseError>(StatusCodes.Status409Conflict)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);

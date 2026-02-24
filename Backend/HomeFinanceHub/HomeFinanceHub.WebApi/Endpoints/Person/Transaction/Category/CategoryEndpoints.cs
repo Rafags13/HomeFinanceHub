@@ -43,7 +43,7 @@ namespace HomeFinanceHub.WebApi.Endpoints.Person.Transaction.Category
                 );
             })
                 .WithDescription("Endpoint responsável por criar uma categoria.")
-                .Produces<bool>(StatusCodes.Status200OK)
+                .Produces<bool>(StatusCodes.Status201Created)
                 .Produces<BaseError>(StatusCodes.Status400BadRequest)
                 .Produces<BaseError>(StatusCodes.Status500InternalServerError);
 

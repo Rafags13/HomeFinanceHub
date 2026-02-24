@@ -9,6 +9,11 @@ namespace HomeFinanceHub.Application.Services.Person.Transaction.Category.Querie
         IUnitOfWork unitOfWork
     ) : IGetPaginatedCategoryService
     {
+        /// <summary>
+        /// Serviço responsável por retornar a listagem paginada de categorias,
+        /// sendo possível selecionar a pagina, bem como seu tamanho.
+        /// </summary>
+
         public Task<PaginatedDTO<ResponsePaginatedCategoryDTO>> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
         {
             return unitOfWork.CategoryRepository.PaginateAsync(page, pageSize, cancellationToken);

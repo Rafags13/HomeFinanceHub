@@ -12,6 +12,11 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
         IUnitOfWork unitOfWork
     ) : ICreatePersonService
     {
+
+        /// <summary>
+        /// Serviço responsável por criar uma pessoa no sistema, garantindo que as regras de negócio sejam respeitadas
+        /// Neste caso, a regra de negócio é que o nome da pessoa não pode exceder um determinado número de caracteres, definido em PersonContants.MAX_NAME_LENGTH
+        /// </summary>
         public async Task<OneOf<bool, BaseError>> CreateAsync(RequestCreatePersonDTO content, CancellationToken cancellationToken = default)
         {
             var error = Validate(content);
@@ -23,7 +28,7 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
             return true;
         }
 
-        private static BaseError? Validate(RequestCreatePersonDTO content)
+        private static PersonNameMaxLengthError? Validate(RequestCreatePersonDTO content)
         {
             if (content.Name.Length > PersonContants.MAX_NAME_LENGTH)
                 return new PersonNameMaxLengthError(PersonContants.MAX_NAME_LENGTH);

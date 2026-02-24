@@ -8,6 +8,10 @@ namespace HomeFinanceHub.Application.Services.Person.Queries
         IUnitOfWork unitOfWork
     ) : IGetPaginatedPersonService
     {
+        /// <summary>
+        /// Serviço responsável por retornar a listagem paginada das pessoas do sistema,
+        /// permitindo que o cliente especifique a página e o número de itens por página.
+        /// </summary>
         public Task<ResponsePaginatedPersonDTO> GetPaginatedAsync(int page, sbyte pageSize, CancellationToken cancellationToken = default)
         {
             return unitOfWork.PersonRepository.PaginateAsync(page, pageSize, cancellationToken);

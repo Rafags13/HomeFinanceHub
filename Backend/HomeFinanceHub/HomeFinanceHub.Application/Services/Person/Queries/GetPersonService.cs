@@ -11,6 +11,13 @@ namespace HomeFinanceHub.Application.Services.Person.Queries
         IUnitOfWork unitOfWork
     ) : IGetPersonService
     {
+        /// <summary>
+        /// Serviço responsável por buscar as informações de uma pessoa específica,
+        /// utilizando o repositório para acessar os dados e retornando um DTO com as informações da pessoa,
+        /// ou um erro caso a pessoa não seja encontrada.
+        /// É utilizado para buscar as informações a serem atualizadas.
+        /// </summary>
+
         public async Task<OneOf<PersonDTO, BaseError>> GetAsync(long id, CancellationToken cancellationToken = default)
         {
             var person = await unitOfWork.PersonRepository.GetAsync(id, cancellationToken);
