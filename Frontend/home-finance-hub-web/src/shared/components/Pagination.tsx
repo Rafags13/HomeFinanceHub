@@ -40,7 +40,6 @@ export function Pagination({
     }
 
     for (let i = leftSiblingIndex; i <= rightSiblingIndex; i++) {
-      console.log(i);
       if (i !== 1 && i !== currentTotalPageNumbers) {
         range.push(i);
       }
@@ -96,7 +95,7 @@ export function Pagination({
 
       <button
         onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === Math.floor(totalItems / 10)}
+        disabled={currentPage + 1 === Math.floor(totalItems / (10 + 1) + 1)}
         className="px-3 py-1 rounded border disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Next

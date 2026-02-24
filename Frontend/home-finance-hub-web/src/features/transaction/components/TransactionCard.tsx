@@ -2,8 +2,11 @@ import Card from "../../../shared/components/card/Card";
 import CardContent from "../../../shared/components/card/CardContent";
 import CardSecondaryInformations from "../../../shared/components/card/CardSecondaryInformations";
 import CardTitle from "../../../shared/components/card/CardTitle";
-import { expenseCategoryTypeTitle } from "../../../shared/types/enums/expense-category-type.enum";
-import { formatCurrency } from "../../../shared/utils/number-helper";
+import MoneyTag from "../../../shared/components/MoneyTag";
+import {
+  EExpenseCategoryType,
+  expenseCategoryTypeTitle,
+} from "../../../shared/types/enums/expense-category-type.enum";
 import type { TransactionDTO } from "../types/interfaces/transaction.dto";
 
 export default function TransactionCard({
@@ -13,12 +16,15 @@ export default function TransactionCard({
   categoryDescription,
   personName,
 }: TransactionDTO) {
+  const valueByCategory =
+    type === EExpenseCategoryType.Expenditure ? value * -1 : value;
+
   return (
     <Card>
       <CardContent>
         <CardTitle title={description ?? "Sem Descrição"} />
         <CardSecondaryInformations>
-          <p>Total Balance: {formatCurrency(value)}</p>|
+          <MoneyTag label="Total Balance" value={valueByCategory} />|
           <p>{expenseCategoryTypeTitle[type]}</p>|
           <p>Category: {categoryDescription}</p>|<p>Person: {personName}</p>
         </CardSecondaryInformations>

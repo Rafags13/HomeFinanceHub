@@ -5,6 +5,7 @@ import { Modal } from "../../../shared/components/Modal";
 import { Pagination } from "../../../shared/components/Pagination";
 import { useNavigate } from "react-router-dom";
 import { usePaginatedPerson, useRemovePerson } from "../api/person.queries";
+import MoneyTag from "../../../shared/components/MoneyTag";
 
 export default function PersonList() {
   const [modalPersonId, setModalPersonId] = useState<number | null>(null);
@@ -48,13 +49,32 @@ export default function PersonList() {
           {isLoading ? (
             <></>
           ) : (
-            data?.items.map((person) => (
-              <PersonCard
-                key={person.id}
-                {...person}
-                onCardAction={onCardAction}
-              />
-            ))
+            <>
+              {data?.items.map((person) => (
+                <PersonCard
+                  key={person.id}
+                  {...person}
+                  onCardAction={onCardAction}
+                />
+              ))}
+              <div className="flex flex-row gap-2">
+                <MoneyTag label="Total Balance" value={data!.totalBalance} />|
+                <ul className="flex flex-row gap-2">
+                  {data?.totalExpensesByType.map(({ key, value }, index) => (
+                    <div className="flex flex-row gap-2" key={key}>
+                      <li>
+                        <MoneyTag label={key} value={value} />
+                      </li>
+                      <span>
+                        {index != data?.totalExpensesByType.length - 1
+                          ? `|`
+                          : ""}
+                      </span>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            </>
           )}
         </article>
       </section>

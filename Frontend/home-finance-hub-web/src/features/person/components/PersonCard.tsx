@@ -3,7 +3,7 @@ import CardActions from "../../../shared/components/card/CardActions";
 import CardContent from "../../../shared/components/card/CardContent";
 import CardSecondaryInformations from "../../../shared/components/card/CardSecondaryInformations";
 import CardTitle from "../../../shared/components/card/CardTitle";
-import { formatCurrency } from "../../../shared/utils/number-helper";
+import MoneyTag from "../../../shared/components/MoneyTag";
 import { EPersonCardAction } from "../types/enums/person-card-action.enum";
 import type { PersonItemDTO } from "../types/interfaces/person-item.dto";
 
@@ -25,14 +25,13 @@ export default function PersonCard({
         <CardTitle title={name} />
         <CardSecondaryInformations>
           <p>Age: {`${age} years`}</p>|
-          <p>Total Balance: {formatCurrency(balance)}</p>|
+          <MoneyTag label="Total Balance" value={balance} />
+          {totalExpensesByType.length > 0 ? "|" : ""}
           <ul className="flex flex-row gap-2">
             {totalExpensesByType.map(({ key, value }, index) => (
               <div key={key}>
                 <li>
-                  <span>
-                    {key}: {formatCurrency(value)}
-                  </span>
+                  <MoneyTag label={key} value={value} />
                 </li>
                 <span>
                   {index != totalExpensesByType.length - 1 ? `|` : ""}
