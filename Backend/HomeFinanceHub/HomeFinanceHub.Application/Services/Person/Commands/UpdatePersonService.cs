@@ -12,6 +12,11 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
         IUnitOfWork unitOfWork
     ) : IUpdatePersonService
     {
+        /// <summary>
+        /// Serviço responsável por atualizar o nome de uma pessoa no sistema
+        /// Neste caso, a regra de negócio que é validada é se o possível novo nome da pessoa
+        /// não pode exceder um determinado número de caracteres, definido em PersonContants.MAX_NAME_LENGTH
+        /// </summary>
         public async Task<OneOf<bool, BaseError>> UpdateAsync(RequestUpdatePersonDTO content, CancellationToken cancellationToken = default)
         {
             var error = await ValidateAsync(content, cancellationToken);

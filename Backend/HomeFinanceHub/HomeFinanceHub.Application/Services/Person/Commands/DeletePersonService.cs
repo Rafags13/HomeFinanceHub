@@ -10,6 +10,11 @@ namespace HomeFinanceHub.Application.Services.Person.Commands
         IUnitOfWork unitOfWork
     ) : IDeletePersonService
     {
+        /// <summary>
+        /// Serviço responsável por remover uma pessoa e suas transações associadas utilizando Soft Delete,
+        /// garantindo integridade e rastreabilidade dos dados.
+        /// Valida se a pessoa existe antes da remoção.
+        /// </summary>
         public async Task<OneOf<bool, BaseError>> DeleteAsync(long id, CancellationToken cancellationToken = default)
         {
             var error = await ValidateAsync(id, cancellationToken);

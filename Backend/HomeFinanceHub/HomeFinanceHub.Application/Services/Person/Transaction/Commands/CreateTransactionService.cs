@@ -15,6 +15,12 @@ namespace HomeFinanceHub.Application.Services.Person.Transaction.Commands
         IUnitOfWork unitOfWork
     ) : ICreateTransactionService
     {
+        /// <summary>
+        /// Serviço responsável por criar uma transação,
+        /// validando a existência da pessoa e da categoria,
+        /// bem como as regras de idade mínima para receita
+        /// e compatibilidade entre tipo da transação e finalidade da categoria.
+        /// </summary>
         public async Task<OneOf<bool, BaseError>> CreateAsync(RequestCreateTransactionDTO content, CancellationToken cancellationToken = default)
         {
             var error = await ValidateAsync(content, cancellationToken);

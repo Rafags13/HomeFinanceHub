@@ -11,6 +11,10 @@ namespace HomeFinanceHub.Application.Services.Person.Transaction.Category.Comman
         IUnitOfWork unitOfWork
     ) : ICreateCategoryService
     {
+        /// <summary>
+        /// Serviço responsável por criar uma categoria,
+        /// validando o limite máximo de caracteres da descrição antes da persistência.
+        /// </summary>
         public async Task<OneOf<bool, BaseError>> CreateAsync(RequestCreateCategoryDTO content, CancellationToken cancellationToken = default)
         {
             var error = Validate(content);
@@ -22,7 +26,7 @@ namespace HomeFinanceHub.Application.Services.Person.Transaction.Category.Comman
             return true;
         }
 
-        private static BaseError? Validate(RequestCreateCategoryDTO content)
+        private static CategoryDescriptionMaxLengthError? Validate(RequestCreateCategoryDTO content)
         {
             if (content.Description.Length > CategoryContants.MAX_NAME_LENGTH)
                 return new CategoryDescriptionMaxLengthError(CategoryContants.MAX_NAME_LENGTH);
