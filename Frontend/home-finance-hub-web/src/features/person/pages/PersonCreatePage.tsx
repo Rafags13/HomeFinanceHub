@@ -23,10 +23,7 @@ export default function PersonCreate() {
     <>
       <h1 className="tw-title">Create Person</h1>
 
-      <form
-        className="flex flex-col my-4 gap-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="tw-form" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="tw-label-container" htmlFor="name">
             <span className="tw-label-text">Name</span>

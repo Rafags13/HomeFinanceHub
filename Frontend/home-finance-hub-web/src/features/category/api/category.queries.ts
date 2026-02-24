@@ -11,3 +11,9 @@ export const useCreateCategory = () =>
   useMutation({
     mutationFn: categoryService.create,
   });
+
+export const useSearchCategory = (description: string | null) =>
+  useQuery({
+    queryKey: ["searchCategory", description],
+    queryFn: () => categoryService.search(description),
+  });

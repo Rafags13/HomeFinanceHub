@@ -5,6 +5,10 @@
     @apply text-3xl font-bold;
   }
 
+  .tw-subtitle {
+    @apply text-xl font-bold;
+  }
+
   .tw-label-container {
     @apply flex flex-col gap-1;
   }
@@ -14,7 +18,7 @@
   }
 
   .tw-input {
-    @apply p-2 border rounded-sm border-black;
+    @apply p-2 border rounded-sm border-black w-full;
   }
 
   .tw-error-message {
@@ -27,5 +31,9 @@
 
   .tw-button-outlined {
     @apply p-2 border rounded-md cursor-pointer mt-4 text-black w-full;
+  }
+
+  .tw-form {
+    @apply flex flex-col my-4 gap-4;
   }
 }

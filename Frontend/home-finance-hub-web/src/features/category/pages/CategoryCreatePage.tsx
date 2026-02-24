@@ -22,10 +22,7 @@ export default function CategoryCreatePage() {
     <>
       <h1 className="tw-title">Create Person</h1>
 
-      <form
-        className="flex flex-col my-4 gap-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="tw-form" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="tw-label-container" htmlFor="description">
             <span className="tw-label-text">Description</span>
@@ -53,7 +50,9 @@ export default function CategoryCreatePage() {
             >
               <option value={undefined}>Selecione</option>
               {Object.entries(expenseCategoryTypeTitle).map(([key, value]) => (
-                <option value={key}>{value}</option>
+                <option key={key} value={key}>
+                  {value}
+                </option>
               ))}
             </select>
           </label>

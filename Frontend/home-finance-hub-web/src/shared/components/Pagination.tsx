@@ -16,7 +16,7 @@ export function Pagination({
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblingCount * 2 + 5;
 
-    const currentTotalPageNumbers = totalItems / 10 + 1;
+    const currentTotalPageNumbers = totalItems / (10 + 1) + 1;
 
     if (currentTotalPageNumbers <= totalPageNumbers) {
       return Array.from({ length: currentTotalPageNumbers }, (_, i) => i + 1);
@@ -95,7 +95,7 @@ export function Pagination({
 
       <button
         onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === Math.floor(totalItems / 10)}
+        disabled={currentPage + 1 === Math.floor(totalItems / (10 + 1) + 1)}
         className="px-3 py-1 rounded border disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Next
