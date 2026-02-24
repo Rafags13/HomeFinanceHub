@@ -1,73 +1,132 @@
-# React + TypeScript + Vite
+# Home Finance Hub - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação frontend desenvolvida em React + Vite para gerenciamento de gastos domésticos.
 
-Currently, two official plugins are available:
+Consome a API responsável por Pessoas, Categorias e Transações.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Stack Utilizada
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- TypeScript
+- React Router DOM
+- Axios
+- TanStack Query
+- React Hook Form
+- Zod
+- TailwindCSS
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Arquitetura
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+A aplicação foi estruturada utilizando Feature-Based Architecture, onde cada domínio é isolado em seu próprio módulo.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Cada feature contém:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- api -> integração com backend
+- hooks -> abstrações de queries/mutations
+- components -> componentes específicos do domínio
+- pages -> páginas da feature
+- routes -> definição de rotas
+- schemas -> validações com Zod
+- types -> tipagens TypeScript
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Essa organização facilita:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Escalabilidade
+- Manutenção
+- Separação de responsabilidades
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Fluxo de Dados
+
+### Criação / Edição
+
+- Page
+- React Hook Form
+- Zod (validação)
+- Mutation (TanStack Query)
+- API (Axios)
+- Backend
+
+### Consulta de Dados
+
+- Component
+- Hook customizado
+- TanStack Query
+- Cache
+- API
+
+TanStack Query foi utilizado para:
+
+- Controle de cache
+- Revalidação automática
+- Controle de loading/error
+- Sincronização eficiente com backend
+
+---
+
+## Decisões Técnicas
+
+### Feature-Based Architecture
+
+Melhora organização e escalabilidade do projeto.
+
+### TanStack Query
+
+Evita controle manual de loading/state.
+Centraliza gerenciamento de requisições assíncronas.
+
+### Axios com tipagem
+
+Permite interceptors e melhor controle de erros.
+
+### React Hook Form + Zod
+
+- Alta performance
+- Validação tipada
+- Integração simples com formulários complexos
+
+### TailwindCSS
+
+Permite estilização rápida e consistente.
+Customizações reutilizáveis foram extraídas para classes compartilhadas.
+
+---
+
+## UX Implementada
+
+- Paginação
+- Validação de formulários
+- Tratamento visual de erros
+- Feedback após ações
+
+---
+
+## Integração com API
+
+Base URL configurada via:
+
+VITE_API_BASE_URL
+
+Exemplo:
+
+VITE_API_BASE_URL=https://localhost:5001
+
+---
+
+## 🛠 Como Executar
+
+1. Instalar dependências
+
+npm install
+
+2. Criar arquivo `.env`
+
+VITE_API_BASE_URL=https://localhost:<porta-backend>
+
+3. Rodar aplicação
